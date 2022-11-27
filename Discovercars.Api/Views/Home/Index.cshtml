@@ -1,0 +1,29 @@
+﻿@using Discovercars.Domain.Entity
+@{
+    ViewData["Title"] = "Home Page";
+}
+@model IEnumerable<Location>
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+
+    @if (Model != null)
+    {
+        <ul class="navbar-nav flex-grow-1">
+            @foreach (var location in Model)
+            {
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Offer" asp-action="Index" asp-route-id="@location.Id">
+                        
+                        @location.Name
+                        
+                    </a>
+                </li>
+            }
+
+        </ul>
+
+    }
+
+
+</div>

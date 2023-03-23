@@ -11,7 +11,7 @@ namespace Discoverscars.Infrastructure.Implementations.Requests.RequestServices
 
         Task<IEnumerable<Offer>> IOfferService.Search(OfferRequest request)
         {
-            return _iRequestService.Post<IEnumerable<Offer>, OfferRequest>("Availability/GetOffers", request);
+            return _requestService.Post<IEnumerable<Offer>, OfferRequest>("Availability/GetOffers", request);
         }
     }
 }

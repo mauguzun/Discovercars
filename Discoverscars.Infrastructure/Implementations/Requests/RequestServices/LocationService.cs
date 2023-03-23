@@ -6,11 +6,11 @@ namespace Discoverscars.Infrastructure.Implementations.Requests.RequestServices
 {
     public class LocationService : BaseRequestServices , ILocationService
     {
-        public LocationService(IRequestService iRequestService) : base(iRequestService) { }
+        public LocationService(IRequestService requestService) : base(requestService) { }
 
         public async Task<IEnumerable<Location>> GetAllAsync()
         {
-            return await _iRequestService.GetAsync<IEnumerable<Location>>("Locations/Locations");
+            return await _requestService.GetAsync<IEnumerable<Location>>("Locations/Locations");
         }
 
     }

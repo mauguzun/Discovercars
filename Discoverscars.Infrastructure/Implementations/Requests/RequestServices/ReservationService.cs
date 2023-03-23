@@ -11,7 +11,7 @@ namespace Discoverscars.Infrastructure.Implementations.Requests.RequestServices
 
         public Task<Reservation> MakeReservation(ReservationRequest resevationRequest)
         {
-            return _requestService.Post<Reservation, ReservationRequest>("Reservations/CreateReservation", resevationRequest);
+            return _requestService.Send<Reservation, ReservationRequest>("Reservations/CreateReservation", resevationRequest);
         }
     }
 }

@@ -4,30 +4,28 @@ using RestSharp;
 
 namespace Discoverscars.Infrastructure.Implementations.Requests
 {
-    public class RequestService : IRequestService
+    public class RequestService : RestClient , IRequestService 
     {
-        private readonly RestClient client;
-        public RequestService(IConfiguration configuration)
-        {
-            var apiBaseUrl = configuration.GetValue<string>("ApiUrl");
-            client = new RestClient(apiBaseUrl);
-        }
+
+        public RequestService(IConfiguration configuration) => this.Options.BaseUrl = new Uri(configuration.GetValue<string>("ApiUrl"));
+  
 
         public async Task<Tout> GetAsync<Tout>(string url)
         {
             var httpRequest = new RestRequest(url, Method.Get);
-            var queryResult = await client.ExecuteAsync<Tout>(httpRequest);
+            var queryResult = await this.ExecuteAsync<Tout>(httpRequest);
 
             return queryResult.Data;
         }
 
-        public async Task<Tout> Post<Tout, Tin>(string url, Tin request)
+        public async Task<Tout> Send<Tout, Tin>(string url, Tin request)
         {
+
             var httpRequest = new RestRequest(url, Method.Post);
             httpRequest.RequestFormat = DataFormat.Json;
             httpRequest.AddBody(request);
 
-            var queryResult = await client.ExecuteAsync<Tout>(httpRequest);
+            var queryResult = await this.ExecuteAsync<Tout>(httpRequest);
 
             return queryResult.Data;
         }

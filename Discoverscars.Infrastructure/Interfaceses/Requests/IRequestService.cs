@@ -4,6 +4,6 @@
     {
         public Task<Tout> GetAsync<Tout>(string url);
 
-        public Task<Tout> Post<Tout, Tin>(string url, Tin request);
+        public Task<Tout> Send<Tout, Tin>(string url, Tin request);
     }
 }

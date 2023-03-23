@@ -4,6 +4,7 @@ using Discoverscars.Infrastructure.Interfaceses;
 using Discoverscars.Infrastructure.Interfaceses.Requests;
 using Discoverscars.Infrastructure.Interfaceses.Requests.RequestServices;
 using FluentValidation.AspNetCore;
+using Microsoft.Extensions.Configuration;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,7 +18,6 @@ builder.Services.AddControllersWithViews().
 
 
     options.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-
 });
 
 builder.Services.AddTransient<IRequestService, RequestService>();
